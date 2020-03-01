@@ -4,7 +4,7 @@
 
     <h1>Lista de paises</h1>
     <hr />
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formPises">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formPises" id="btnNuevo">
         <span class="glyphicon glyphicon-plus"></span>
         Nuevo
     </button>
@@ -33,6 +33,7 @@
                 </div>
                 <div class="modal-body">
                     <form>
+                        <input type="hidden" id="idPais"/>
                         <div class="form-group">
                             <label for="nombrePais">Nombre</label>
                             <input type="text" class="form-control" id="nombrePais" placeholder="Ingrese el nombre del pais">

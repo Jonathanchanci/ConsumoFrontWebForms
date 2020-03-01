@@ -1,4 +1,9 @@
 ﻿$(function () {
+
+    $("#btnNuevo").click(function () {
+        $("#idPais").val("");
+    });
+
     $.ajax({
         url: "http://localhost:58525/api/pais",
         type: "get",
@@ -71,6 +76,8 @@
 
                     $("#nombrePais").val(nombrePais);
                     $("#descPais").val(descPais);
+                    $("#idPais").val(idPais);
+                    $("#formPises").modal("show");
 
                 });
             }
@@ -80,16 +87,25 @@
     $("#btnSubmit").click(function () {
         var nombre = $("#nombrePais").val();
         var desc = $("#descPais").val();
+        var idPais = $("#idPais").val();
+        var tipo = "POST";
+
+        if (idPais !== "") {
+            tipo = "PUT";
+        }
 
         var validationForm = formIsValid(nombre, desc);
         if (validationForm === "OK") {
-            var pais = new Object();            
+            var pais = new Object();
+            if (idPais !== "") {
+                pais.IdPais = idPais;
+            }           
             pais.NombrePais = nombre;
             pais.Descripcion = desc;
             
             $.ajax({
-                url: "http://localhost:58525/api/pais",
-                type: "post",
+                url: "http://localhost:58525/api/pais/" + idPais,
+                type: tipo,
                 data: pais,
                 success: function (res) {
                     console.log(res);
